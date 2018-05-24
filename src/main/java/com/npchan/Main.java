@@ -9,6 +9,7 @@ public class Main {
         new DiscordApiBuilder().setToken(System.getenv("BOT_TOKEN")).login().thenAccept(api -> {
 
             api.addMessageCreateListener(event -> {
+
                 if (event.getMessage().getContent().equalsIgnoreCase("!ping")) {
                     Bot.getBeatmap(event, "tux", "889322");
                 }
