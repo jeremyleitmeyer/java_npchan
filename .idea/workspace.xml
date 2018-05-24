@@ -24,20 +24,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/npchan/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="468">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bot.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Bot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/npchan/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-314">
-              <caret line="53" column="73" selection-start-line="53" selection-start-column="73" selection-end-line="53" selection-end-column="73" />
+            <state relative-caret-position="258">
+              <caret line="75" column="323" selection-start-line="75" selection-start-column="323" selection-end-line="75" selection-end-column="323" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -243,12 +243,12 @@
       <workItem from="1527120902418" duration="2390000" />
       <workItem from="1527126084137" duration="4559000" />
       <workItem from="1527175995076" duration="146000" />
-      <workItem from="1527176215299" duration="11593000" />
+      <workItem from="1527176215299" duration="11661000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18688000" />
+    <option name="totallyTimeSpent" value="18756000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1438" height="877" extended-state="0" />
@@ -349,20 +349,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/npchan/Bot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/npchan/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-314">
-          <caret line="53" column="73" selection-start-line="53" selection-start-column="73" selection-end-line="53" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="468">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/npchan/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/npchan/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="258">
+          <caret line="75" column="323" selection-start-line="75" selection-start-column="323" selection-end-line="75" selection-end-column="323" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

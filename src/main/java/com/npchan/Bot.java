@@ -73,7 +73,7 @@ public class Bot {
             }
         }
         event.getChannel().sendMessage("**" + username + "**" + " is listening to:");
-        EmbedBuilder embed  = new EmbedBuilder().setTitle(title + " - " + artist).setDescription("BPM: " + bpm + "\nLength: " + str_length + "\nBeatmap: [View](" + "https://osu.ppy.sh/b/"+ beatmapId + ")").setThumbnail("https://b.ppy.sh/thumb/" + beatmapsetId + "l.jpg").setFooter("© Riker, Flo, & Tux").setColor(Color.red);
+        EmbedBuilder embed  = new EmbedBuilder().setTitle(title + " - " + artist).setDescription("BPM: " + bpm + "\nLength: " + str_length + "\nBeatmap: [View](" + "https://osu.ppy.sh/b/"+ beatmapId + ")").setThumbnail("https://b.ppy.sh/thumb/" + beatmapsetId + "l.jpg").setFooter("© Riker, Flo, & Tux").setColor(Color.pink);
         event.getChannel().sendMessage(embed);
     }
 }
