@@ -35,7 +35,7 @@ public class Bot {
 
             String output;
             while ((output = br.readLine()) != null) {
-                Bot.buildMessage(event, output);
+                Bot.buildMessage(event, output, username);
             }
 
             httpClient.getConnectionManager().shutdown();
@@ -51,7 +51,7 @@ public class Bot {
 
     }
 
-    public static void buildMessage(MessageCreateEvent event, String output) {
+    public static void buildMessage(MessageCreateEvent event, String output, String username) {
         JSONArray resArr = new JSONArray(output);
         JSONObject apiRes = resArr.getJSONObject(0);
         String artist = apiRes.getString("artist");
@@ -72,7 +72,7 @@ public class Bot {
                 str_length = Integer.toString(minutes) + ':' + Integer.toString(seconds);
             }
         }
-
+        event.getChannel().sendMessage("**" + username + "**" + " is listening to:");
         EmbedBuilder embed  = new EmbedBuilder().setTitle(title + " - " + artist).setDescription("BPM: " + bpm + "\nLength: " + str_length + "\nBeatmap: [View](" + "https://osu.ppy.sh/b/"+ beatmapId + ")").setThumbnail("https://b.ppy.sh/thumb/" + beatmapsetId + "l.jpg").setFooter("© Riker, Flo, & Tux").setColor(Color.red);
         event.getChannel().sendMessage(embed);
     }
