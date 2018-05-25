@@ -15,18 +15,20 @@ public class Main {
                 api.addMessageCreateListener(event -> {
 
                     try{
+//                        this is causing error: "String index out of range:
+// 1" will fix
                         if(event.getMessage().getContent().substring(0,1)
                                 .equalsIgnoreCase(">")){
                             String msgArgs = event.getMessage().getContent()
                                     .substring(1,10);
+//                            grab word two
                             String osuUsername = event.getMessage().getContent()
                                     .substring(11);
 
                             switch(msgArgs){
                                 case "npchanSet":
-                                    String user = event.getMessage().getAuthor()
-                                            .getIdAsString();
-                                    Bot.osuUserApiCall(event, user, osuUsername);
+                                    String user = event.getMessage().getAuthor().getIdAsString();
+                                    Bot.setUser(event, user, Bot.osuApiCall(osuUsername, "https://osu.ppy.sh/api/get_user?u="));
                                     break;
                             }
                         }
@@ -37,7 +39,7 @@ public class Main {
 //                    this will be an acceptance of data not a ! command
                     if (event.getMessage().getContent().equalsIgnoreCase("!ping")) {
 //                    this will be dynamic
-                        Bot.getBeatmap(event, "tux", "889322");
+                        Bot.buildMessage(event, Bot.osuApiCall("889322", "https://osu.ppy.sh/api/get_beatmaps?b="), "tux");
                     }
 
                     if (event.getMessage().getContent().equalsIgnoreCase
@@ -46,10 +48,6 @@ public class Main {
                                 .getIdAsString();
                         Bot.getUser(event, userId);
                     }
-
-
-//                    this will be dynamic
-//                        Bot.setUser(user, "889322");
 
                 });
                 System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());

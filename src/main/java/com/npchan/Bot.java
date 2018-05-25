@@ -18,14 +18,15 @@ import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 
 public class Bot {
-    public static void getBeatmap(MessageCreateEvent event, String username, String beatmap) {
 
+    public static String osuApiCall(String osuData, String apiUrl) {
         try {
 //            build httpclient object
             HttpClient httpClient = HttpClientBuilder.create().build();
 //            api url GET for song data
             HttpGet getRequest = new HttpGet(
-                    "https://osu.ppy.sh/api/get_beatmaps?b=" + beatmap + "&k=" + System.getenv("OSU_KEY"));
+                    apiUrl + osuData + "&k=" +
+                            System.getenv("OSU_KEY"));
             getRequest.addHeader("accept", "application/json");
 //            had to set headers
             getRequest.setHeader("User-Agent", "Anonymous");
@@ -40,7 +41,7 @@ public class Bot {
 
             String output;
             while ((output = br.readLine()) != null) {
-                Bot.buildMessage(event, output, username);
+                return output;
             }
 
             httpClient.getConnectionManager().shutdown();
@@ -48,15 +49,19 @@ public class Bot {
         } catch (ClientProtocolException e) {
 
             e.printStackTrace();
+            return "fail";
 
         } catch (IOException e) {
 
             e.printStackTrace();
+            return "fail";
         }
-
+        return "fail";
     }
 
-    public static void buildMessage(MessageCreateEvent event, String output, String username) {
+
+    public static void buildMessage(MessageCreateEvent event, String output,
+                                    String username) {
 //        convert String to JSONarray
         JSONArray resArr = new JSONArray(output);
 //        then to a JSONobject
@@ -94,46 +99,9 @@ public class Bot {
         event.getChannel().sendMessage(embed);
     }
 
-    public static void osuUserApiCall(MessageCreateEvent event, String user,
-                                      String osuUsername) {
-        try {
-//            build httpclient object
-            HttpClient httpClient = HttpClientBuilder.create().build();
-//            api url GET for song data
-            HttpGet getRequest = new HttpGet(
-                    "https://osu.ppy.sh/api/get_user?u=" + osuUsername + "&k=" +
-                            System.getenv("OSU_KEY"));
-            getRequest.addHeader("accept", "application/json");
-//            had to set headers
-            getRequest.setHeader("User-Agent", "Anonymous");
-            HttpResponse response = httpClient.execute(getRequest);
-
-            if (response.getStatusLine().getStatusCode() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + response.getStatusLine().getStatusCode());
-            }
-
-            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-
-            String userOutput;
-            while ((userOutput = br.readLine()) != null) {
-                Bot.setUser(event, user, userOutput);
-            }
-
-            httpClient.getConnectionManager().shutdown();
-
-        } catch (ClientProtocolException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-    }
-
     public static void setUser(MessageCreateEvent event, String user, String
             userOutput) {
+        System.out.println(userOutput);
         //        convert String to JSONarray
         JSONArray resArr = new JSONArray(userOutput);
 //        then to a JSONobject
@@ -146,7 +114,9 @@ public class Bot {
             DBObject osuUser = new BasicDBObject("_id", user).append("username",
                     osuUserRes.getString("username")).append("osu_id",
                     osuUserRes.getString("user_id"));
-            userCol.insert(osuUser);
+                    userCol.insert(osuUser);
+            event.getChannel().sendMessage(osuUserRes.getString("username")
+                    + ", you have been added.");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
