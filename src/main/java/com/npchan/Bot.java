@@ -58,7 +58,7 @@ public class Bot {
     public static void buildMessage(MessageCreateEvent event, String output, String username) {
 //        convert String to JSONarray
         JSONArray resArr = new JSONArray(output);
-//        then to an object
+//        then to a JSONobject
         JSONObject apiRes = resArr.getJSONObject(0);
 //        set message variables
         String artist = apiRes.getString("artist");
