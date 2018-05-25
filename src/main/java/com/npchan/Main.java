@@ -11,6 +11,7 @@ public class Main {
             api.addMessageCreateListener(event -> {
 
                 if (event.getMessage().getContent().equalsIgnoreCase("!ping")) {
+//                    this will be dynamic
                     Bot.getBeatmap(event, "tux", "889322");
                 }
             });
