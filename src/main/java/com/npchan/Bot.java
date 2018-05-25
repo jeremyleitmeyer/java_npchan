@@ -176,7 +176,7 @@ public class Bot {
 
                 EmbedBuilder embed = new EmbedBuilder().setTitle(username +" " +
                         ":flag_" + country +":")
-                        .setDescription("Rank: " + rank + "\nCountry Rank: " +
+                        .setDescription("Rank: #" + rank + "\nCountry Rank: #" +
                                 cRank + "\nPP: " + pp)
                         .setFooter("© Riker, Flo, & Tux")
                         .setColor(Color.pink);

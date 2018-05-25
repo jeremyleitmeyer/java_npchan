@@ -1,10 +1,6 @@
 package com.npchan;
 
-import com.mongodb.*;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.entity.user.*;
-
-import java.net.UnknownHostException;
 
 public class Main {
 
@@ -15,8 +11,8 @@ public class Main {
                 api.addMessageCreateListener(event -> {
 
                     try{
-//                        this is causing error: "String index out of range:
-// 1" will fix
+//                      this is causing error: "String index out of range:
+//                      1" will fix
                         if(event.getMessage().getContent().substring(0,1)
                                 .equalsIgnoreCase(">")){
                             String msgArgs = event.getMessage().getContent()
