@@ -101,14 +101,15 @@ public class Bot {
 
     public static void setUser(MessageCreateEvent event, String user, String
             userOutput) {
-        System.out.println(userOutput);
         //        convert String to JSONarray
         JSONArray resArr = new JSONArray(userOutput);
 //        then to a JSONobject
         JSONObject osuUserRes = resArr.getJSONObject(0);
         try {
             MongoClient mongoClient = new MongoClient(new MongoClientURI
-                    ("mongodb://localhost:27018"));
+                    ("mongodb://" + System.getenv("DBUSER")
+                            +":"+System.getenv("DBPASS")+"@ds135810.mlab" +
+                            ".com:35810/npchan"));
             DB database = mongoClient.getDB("npchan");
             DBCollection userCol = database.getCollection("users");
             DBObject osuUser = new BasicDBObject("_id", user).append("username",
@@ -125,7 +126,9 @@ public class Bot {
     public static void getUser(MessageCreateEvent event, String userId) {
         try {
             MongoClient mongoClient = new MongoClient(new MongoClientURI
-                    ("mongodb://localhost:27018"));
+                    ("mongodb://" + System.getenv("DBUSER")
+                            +":"+System.getenv("DBPASS")+"@ds135810.mlab" +
+                            ".com:35810/npchan"));
             DB database = mongoClient.getDB("npchan");
             DBCollection userCol = database.getCollection("users");
 
@@ -145,7 +148,7 @@ public class Bot {
         try {
 //            build httpclient object
             HttpClient httpClient = HttpClientBuilder.create().build();
-//            api url GET for song data
+//            api url GET for user data
             HttpGet getRequest = new HttpGet(
                     "https://osu.ppy.sh/api/get_user?u=" + osuUser + "&k=" +
                             System.getenv("OSU_KEY"));
@@ -165,14 +168,12 @@ public class Bot {
             while ((userOutput = br.readLine()) != null){
                 JSONArray resArr = new JSONArray(userOutput);
                 JSONObject osuUserRes = resArr.getJSONObject(0);
-                System.out.println(osuUserRes);
+
                 String username = osuUserRes.getString("username");
                 String pp = osuUserRes.getString("pp_raw");
                 String rank = osuUserRes.getString("pp_rank");
                 String cRank = osuUserRes.getString("pp_country_rank");
                 String country = osuUserRes.getString("country").toLowerCase();
-
-
 
                 EmbedBuilder embed = new EmbedBuilder().setTitle(username +" " +
                         ":flag_" + country +":")
